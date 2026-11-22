@@ -128,6 +128,38 @@ Dexcom の血糖値を、Windows のデスクトップの隅とタスクトレ�
 
 ## 開発者向け
 ソースからの実行、exe のビルド、ファイル構成は [DEVELOPMENT.md](DEVELOPMENT.md) を見てください。
+参加する際は [行動規範（CODE_OF_CONDUCT.md）](CODE_OF_CONDUCT.md) を守ってください。
+
+## Code signing policy（コード署名ポリシー）
+Free code signing provided by [SignPath.io](https://about.signpath.io), certificate by [SignPath Foundation](https://signpath.org)
+
+このプロジェクトの Windows 用実行ファイル（`GlucoseWidgetForDexcom.exe`）は、このリポジトリのソースから GitHub Actions でビルドしたものだけに署名します。署名はリリースごとに承認者が手動で承認します。
+
+| 役割 | メンバー |
+|---|---|
+| Committers and reviewers（コミット・レビュー） | [glucosewidget](https://github.com/glucosewidget) |
+| Approvers（署名の承認） | [glucosewidget](https://github.com/glucosewidget) |
+
+### Privacy policy（プライバシーポリシー）
+This program will not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it.
+
+このプログラムは、利用者が設定画面で入力した Dexcom アカウントを使って Dexcom の Share サーバーと通信し、血糖値を取得します（利用者が明示的に求めた通信です）。それ以外の外部への送信（利用状況の収集など）は行いません。詳しくは「[データの扱い](#データの扱い)」を見てください。
+
+## 謝辞
+- **Dexcom 社** に感謝します。CGM と Share（共有）の仕組みがあるからこそ、このアプリで血糖値を見られます。ただし、このアプリは Dexcom 社とは関係がなく、提供・承認を受けたものでもありません。お問い合わせは Dexcom 社ではなく、このリポジトリにお願いします。
+- **[pydexcom](https://github.com/gagebenne/pydexcom)** の作者 Gage Benne さんとコントリビューターのみなさんに感謝します。Dexcom Share への接続は pydexcom に頼っています。
+
+このアプリは、次のオープンソースソフトウェアを使っています。
+
+| ソフトウェア | 用途 | ライセンス |
+|---|---|---|
+| [pydexcom](https://github.com/gagebenne/pydexcom) | Dexcom Share への接続 | MIT |
+| [requests](https://github.com/psf/requests) | 通信（pydexcom が使用） | Apache-2.0 |
+| [keyring](https://github.com/jaraco/keyring) | パスワードを資格情報マネージャーに保存 | MIT |
+| [pystray](https://github.com/moses-palmer/pystray) | タスクトレイ | LGPL-3.0 |
+| [Pillow](https://github.com/python-pillow/Pillow) | トレイアイコンの画像 | MIT-CMU |
+| [PyInstaller](https://github.com/pyinstaller/pyinstaller) | exe の作成 | GPL-2.0-or-later（ブートローダー例外付き） |
+| [Python](https://www.python.org/) | 実行環境（tkinter を含む） | PSF License |
 
 ## ライセンス
 [MIT License](LICENSE) です。ソフトウェアは「現状のまま」提供され、いかなる保証もありません。
