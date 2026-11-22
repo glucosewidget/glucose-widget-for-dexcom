@@ -1,8 +1,10 @@
 # GlucoseWidgetForDexcom.exe を GitHub Actions で作る
-# - main への push・プルリクエスト：exe を作って Artifacts に置く（版数は version_info.txt のまま）
+# - main への push・プルリクエスト：アプリのソースが変わったときだけ exe を作って Artifacts に置く
+#   （版数は version_info.txt のまま。README などだけの変更ではビルドしない）
 # - 手動実行（Actions → Build exe → Run workflow）：版数（例 0.1.0-beta）を指定して exe を作る。
 #   「Releases にプレリリースとして公開」をオンにすると、v<版数> のタグを付けて Releases にも添付する
 # - v で始まるタグ（例 v0.1.0）の push：タグの版数で exe を作り、Releases に添付する
+#   （タグの push には paths の絞り込みは効かないので、必ずビルドする）
 # いずれも版数に - を含む（例 0.1.0-beta）ときはプレリリースにする
 name: Build exe
 
@@ -10,7 +12,21 @@ on:
   push:
     branches: [main]
     tags: ["v*"]
+    paths:
+      - "glucose_widget.py"
+      - "glucosewidget/**"
+      - "requirements.txt"
+      - "version_info.txt"
+      - "icon.ico"
+      - ".github/workflows/build.yml"
   pull_request:
+    paths:
+      - "glucose_widget.py"
+      - "glucosewidget/**"
+      - "requirements.txt"
+      - "version_info.txt"
+      - "icon.ico"
+      - ".github/workflows/build.yml"
   workflow_dispatch:
     inputs:
       version:

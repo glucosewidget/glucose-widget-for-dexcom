@@ -15,6 +15,7 @@ py -m venv .venv
 
 ## exe のビルド
 - **GitHub Actions**：main へのプッシュ・プルリクエスト・手動実行で、[.github/workflows/build.yml](.github/workflows/build.yml) が Windows 上で `GlucoseWidgetForDexcom.exe` を作り、Actions の「Artifacts」に置きます。
+  main へのプッシュとプルリクエストでは、アプリのソース（`glucose_widget.py`・`glucosewidget/`・`requirements.txt`・`version_info.txt`・`icon.ico`）かワークフローが変わったときだけビルドします（README などだけの変更ではビルドしません）。
 - **手元で作る**：`build_exe.bat` をダブルクリックすると、同じフォルダに `GlucoseWidgetForDexcom.exe` ができます。`build_exe.bat` は cmd で文字化けしないよう Shift-JIS・CRLF で保存しています（`.gitattributes` で改行を変換しない設定）。
 
 どちらも同じ PyInstaller の指定です（`--onefile --noconsole`、`version_info.txt`、`icon.ico` の同梱、`pystray._win32` と `keyring.backends` の取り込み）。
