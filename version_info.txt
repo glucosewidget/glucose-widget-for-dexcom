@@ -1,0 +1,27 @@
+# PyInstaller --version-file 用。
+# FileDescription（表示名 GlucoseWidget for Dexcom）が音量ミキサーなどに出る。製品名は GlucoseWidget、exe名は GlucoseWidgetForDexcom.exe
+VSVersionInfo(
+  ffi=FixedFileInfo(
+    filevers=(0, 1, 0, 0),
+    prodvers=(0, 1, 0, 0),
+    mask=0x3f,
+    flags=0x0,
+    OS=0x40004,
+    fileType=0x1,
+    subtype=0x0,
+    date=(0, 0)
+  ),
+  kids=[
+    StringFileInfo([
+      StringTable('041104B0', [
+        StringStruct('FileDescription', 'GlucoseWidget for Dexcom'),
+        StringStruct('FileVersion', '0.1.0-beta'),
+        StringStruct('InternalName', 'GlucoseWidgetForDexcom'),
+        StringStruct('OriginalFilename', 'GlucoseWidgetForDexcom.exe'),
+        StringStruct('ProductName', 'GlucoseWidget'),
+        StringStruct('ProductVersion', '0.1.0-beta')
+      ])
+    ]),
+    VarFileInfo([VarStruct('Translation', [0x0411, 1200])])
+  ]
+)

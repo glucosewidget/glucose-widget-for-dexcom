@@ -1,0 +1,14 @@
+* text=auto
+
+# ソースは LF で統一
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.yml text eol=lf
+
+# build_exe.bat は Shift-JIS・CRLF のまま保存する（cmd で文字化けしないように）
+*.bat -text
+
+*.ico binary
+*.png binary
+*.docx binary

@@ -1,0 +1,11 @@
+# ビルド成果物（exe は GitHub Actions で作る）
+build/
+dist/
+*.spec
+*.exe
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
