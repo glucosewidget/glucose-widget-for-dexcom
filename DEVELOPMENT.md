@@ -19,8 +19,20 @@ py -m venv .venv
 
 どちらも同じ PyInstaller の指定です（`--onefile --noconsole`、`version_info.txt`、`icon.ico` の同梱、`pystray._win32` と `keyring.backends` の取り込み）。
 
-## リリースの作り方
-1. `version_info.txt` の版数（filevers・prodvers・FileVersion・ProductVersion）を上げてコミットします。
+## ベータ版・リリースの作り方
+
+### Actions の画面から手動で作る（ベータ版向け）
+1. GitHub の「Actions」→「Build exe」→「Run workflow」を開きます。
+2. 「版数」に `0.1.0-beta` のように入れます（形式は `数字.数字.数字` か、その後ろに `-beta` など）。
+3. Releases にも載せたいときは「Releases にプレリリースとして公開する」をオンにします。
+4. 「Run workflow」を押します。
+
+- 入れた版数が exe のプロパティ（ファイル バージョン・製品バージョン）に書き込まれます（リポジトリの `version_info.txt` は変わりません）。
+- 公開しない場合は、その実行の「Artifacts」に `GlucoseWidgetForDexcom-<版数>` として置かれます。
+- 公開する場合は、`v<版数>` のタグが付き、Releases に exe と `.sha256` が添付されます。版数に `-` を含むとプレリリースになります。
+
+### タグで作る
+1. `version_info.txt` の版数を上げてコミットします（タグで作るときはタグの版数が exe に書き込まれるので、合わせておくと分かりやすくなります）。
 2. `v0.1.0` のような `v` で始まるタグを付けてプッシュします。`v0.1.0-beta` のように `-` を含むタグはプレリリースになります。
 3. GitHub Actions が exe と `.sha256` を作り、Releases に添付します。
 
