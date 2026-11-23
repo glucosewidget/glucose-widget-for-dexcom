@@ -1,5 +1,6 @@
-<img width="670" height="160" alt="glucose_widget_demo" src="https://github.com/user-attachments/assets/0049e453-8351-4651-ba40-7ad19a3863a3" />
 # GlucoseWidget for Dexcom（非公式 / Unofficial）
+
+<img width="670" height="160" alt="glucose_widget_demo" src="https://github.com/user-attachments/assets/0049e453-8351-4651-ba40-7ad19a3863a3" />
 
 > **English summary:** GlucoseWidget for Dexcom is a small Windows desktop and system-tray widget that shows your
 > Dexcom CGM glucose reading and alerts you with sounds and Windows notifications when it goes out of range.
