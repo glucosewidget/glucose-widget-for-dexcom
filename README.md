@@ -1,5 +1,10 @@
 # GlucoseWidget for Dexcom（非公式 / Unofficial）
 
+> **English summary:** GlucoseWidget for Dexcom is a small Windows desktop and system-tray widget that shows your
+> Dexcom CGM glucose reading and alerts you with sounds and Windows notifications when it goes out of range.
+> It is an **unofficial** app (not made, endorsed, owned by or affiliated with Dexcom, Inc.) and is **not a medical
+> device** — do not use it for treatment decisions. The rest of this README is in Japanese.
+
 Dexcom の血糖値を、Windows のデスクトップの隅とタスクトレイに常駐表示する小さなウィジェットです。
 範囲を外れたときは、アラート音と Windows の通知で知らせます。
 
@@ -130,10 +135,10 @@ Dexcom の血糖値を、Windows のデスクトップの隅とタスクトレ�
 ソースからの実行、exe のビルド、ファイル構成は [DEVELOPMENT.md](DEVELOPMENT.md) を見てください。
 参加する際は [行動規範（CODE_OF_CONDUCT.md）](CODE_OF_CONDUCT.md) を守ってください。
 
-## Code signing policy（コード署名ポリシー）
-Free code signing provided by [SignPath.io](https://about.signpath.io), certificate by [SignPath Foundation](https://signpath.org)
+## Code signing policy
+Windows release binaries are planned to be signed with free code signing provided by [SignPath.io](https://about.signpath.io), certificate by [SignPath Foundation](https://signpath.org) (application in progress; current releases are unsigned).
 
-このプロジェクトの Windows 用実行ファイル（`GlucoseWidgetForDexcom.exe`）は、このリポジトリのソースから GitHub Actions でビルドしたものだけに署名します。署名はリリースごとに承認者が手動で承認します。
+（コード署名ポリシー）SignPath Foundation の無料コード署名に申請中です。承認されて署名を始めるまでは、配布している exe に署名はありません。署名を始めたあとは、このリポジトリのソースから GitHub Actions でビルドした Windows 用実行ファイル（`GlucoseWidgetForDexcom.exe`）だけに署名し、署名はリリースごとに承認者が手動で承認します。
 
 | 役割 | メンバー |
 |---|---|
@@ -160,6 +165,8 @@ This program will not transfer any information to other networked systems unless
 | [Pillow](https://github.com/python-pillow/Pillow) | トレイアイコンの画像 | MIT-CMU |
 | [PyInstaller](https://github.com/pyinstaller/pyinstaller) | exe の作成 | GPL-2.0-or-later（ブートローダー例外付き） |
 | [Python](https://www.python.org/) | 実行環境（tkinter を含む） | PSF License |
+
+exe に同梱しているライブラリのライセンス全文は、リリースに添付している `THIRD_PARTY_LICENSES.txt` にまとめています。
 
 ## ライセンス
 [MIT License](LICENSE) です。ソフトウェアは「現状のまま」提供され、いかなる保証もありません。

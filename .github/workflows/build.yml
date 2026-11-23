@@ -112,12 +112,41 @@ jobs:
           Get-Content dist/GlucoseWidgetForDexcom.exe.sha256
           (Get-Item dist/GlucoseWidgetForDexcom.exe).VersionInfo | Format-List FileDescription, ProductName, FileVersion, ProductVersion
 
+      # exe に同梱しているライブラリと Python のライセンス文をまとめる
+      - name: Third-party licenses
+        shell: python
+        run: |
+          import os, subprocess, sys
+          subprocess.run([sys.executable, "-m", "pip", "install", "-q", "pip-licenses"], check=True)
+          out = subprocess.run(
+              [sys.executable, "-m", "piplicenses", "--from=mixed", "--with-urls", "--with-license-file",
+               "--no-license-path", "--format=plain-vertical",
+               "--ignore-packages", "pip-licenses", "prettytable", "wcwidth"],
+              check=True, capture_output=True, text=True, encoding="utf-8").stdout
+          parts = [
+              "GlucoseWidget for Dexcom - third-party software licenses",
+              "",
+              "GlucoseWidgetForDexcom.exe bundles the Python runtime and the following packages.",
+              "Their license texts are reproduced below.",
+              "",
+              out.rstrip(),
+          ]
+          py_lic = os.path.join(sys.base_prefix, "LICENSE.txt")
+          if os.path.exists(py_lic):
+              parts += ["", "Python", sys.version.split()[0], "Python Software Foundation License",
+                        open(py_lic, encoding="utf-8", errors="replace").read().rstrip()]
+          text = "\n".join(parts) + "\n"
+          with open(os.path.join("dist", "THIRD_PARTY_LICENSES.txt"), "w", encoding="utf-8", newline="\n") as f:
+              f.write(text)
+          print("THIRD_PARTY_LICENSES.txt:", text.count("\n"), "lines")
+
       - uses: actions/upload-artifact@v4
         with:
           name: GlucoseWidgetForDexcom${{ steps.ver.outputs.version != '' && format('-{0}', steps.ver.outputs.version) || '' }}
           path: |
             dist/GlucoseWidgetForDexcom.exe
             dist/GlucoseWidgetForDexcom.exe.sha256
+            dist/THIRD_PARTY_LICENSES.txt
           if-no-files-found: error
 
   release:
@@ -141,5 +170,6 @@ jobs:
           files: |
             dist/GlucoseWidgetForDexcom.exe
             dist/GlucoseWidgetForDexcom.exe.sha256
+            dist/THIRD_PARTY_LICENSES.txt
           generate_release_notes: true
           prerelease: ${{ contains(needs.build.outputs.version, '-') }}
